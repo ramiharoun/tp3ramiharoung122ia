@@ -7,10 +7,10 @@ import jakarta.ws.rs.core.MediaType;
 public class GuideTouristiqueResource {
 
     @GET
-    @Path("/lieu/{nom}")
+    @Path("lieu/{ville_ou_pays}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String[] obtenirInfos(@PathParam("nom") String nomLieu) {
-        String[] resultat = { nomLieu };
-        return resultat;
+    public String[] villeOuPays(@PathParam("ville_ou_pays") String lieu) {
+        return new String[]{ lieu }; // Étape 2 : ["Paris"]
     }
+
 }
