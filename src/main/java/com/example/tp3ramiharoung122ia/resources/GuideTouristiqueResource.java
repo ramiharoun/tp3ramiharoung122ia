@@ -13,10 +13,12 @@ public class GuideTouristiqueResource {
     @Inject
     LlmClientRest llm;
 
+    // /api/guide/lieu/Paris?nb=4
     @GET
     @Path("lieu/{ville_ou_pays}")
-    public Response villeOuPays(@PathParam("ville_ou_pays") String lieu) {
-        String resultat = llm.assistant().guide(lieu);
+    public Response villeOuPays(@PathParam("ville_ou_pays") String lieu,
+                                @QueryParam("nb") @DefaultValue("2") int nb) {
+        String resultat = llm.assistant().guide(lieu, nb);
         return Response.ok(resultat).build();
     }
 }

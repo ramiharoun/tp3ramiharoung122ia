@@ -11,19 +11,16 @@ public class LlmClientRest {
     private final GuideTouristique assistant;
 
     public LlmClientRest() {
-        String key = System.getenv("GEMINI_KEY");
-        if (key == null || key.isBlank()) {
-            throw new IllegalStateException("Clé API GEMINI_KEY introuvable");
-        }
+        String apiKey = System.getenv("GEMINI_KEY");
 
-        ChatModel modele = GoogleAiGeminiChatModel.builder()
-                .apiKey(key)
-                .modelName("gemini-2.0-flash-exp")
-                .temperature(0.25)
+        ChatModel model = GoogleAiGeminiChatModel.builder()
+                .apiKey(apiKey)
+                .modelName("gemini-2.5-flash")
+                .temperature(0.3)
                 .build();
 
         this.assistant = AiServices.builder(GuideTouristique.class)
-                .chatModel(modele)
+                .chatModel(model)
                 .build();
     }
 
